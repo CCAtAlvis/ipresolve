@@ -1,0 +1,15 @@
+{
+  "name": "ipres",
+  "version": "0.1.0",
+  "description": "Dynamic to static IP resolver (kindof)",
+  "main": "relay-server.js",
+  "scripts": {
+    "start": "node relay-server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chinmay Chandak @CCAtAlvis",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^7.0.0"
+  }
+}
