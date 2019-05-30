@@ -2,7 +2,7 @@ const http = require('http');
 const WebSocket = require('ws');
 
 const hostname = 'localhost';
-const port = 80;
+const port = 8080;
 
 let socket;
 
