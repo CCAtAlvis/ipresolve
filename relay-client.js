@@ -1,7 +1,7 @@
 const http = require('http');
 const WebSocket = require('ws');
 
-const wsHost = "wss://ipresolve.herokuapp.com";
+const wsHost = "https://ipresolve.herokuapp.com";
 const ws = new WebSocket(wsHost);
 
 ws.on('open', () => {

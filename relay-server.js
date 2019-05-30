@@ -52,6 +52,4 @@ wss.on('connection', (ws) => {
 });
 
 
-server.listen(port, () => {
-  console.log(`Server running and listning to port: ${port}/`);
-});
+server.listen(port);
