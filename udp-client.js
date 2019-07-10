@@ -1,12 +1,23 @@
 const dgram = require('dgram');
 const message = Buffer.from('Some byte fgfksbdgkfhvk akffskd fsfjk bsfsbdfs bsjdvfb skcb');
-const client = dgram.createSocket('udp4');
+const socket = dgram.createSocket('udp4');
 
-const PORT = 41234;
-const HOST = 'ipresolver.eastus.cloudapp.azure.com';
+const DEST_PORT = 41234;
+const DEST_HOST = 'ipresolver.eastus.cloudapp.azure.com';
+const SOUR_PORT = 9999;
 
-client.send(message, PORT, HOST, (err) => {
-  client.close();
+socket.bind(SOUR_PORT, () => {
+  socket.send(message, DEST_PORT, DEST_HOST, (err) => {
+    console.log('message sent');
+  });
+});
+
+socket.on('listening', () => {
+  console.log('listening for in comming messages');
+});
+
+socket.on('message', (msg, rinfo) => {
+    console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
 });
 
 // payload = payload.toString('hex');
