@@ -23,5 +23,5 @@ socket.on('message', (msg, rinfo) => {
     } else {
       console.log('PONG SENT');
     }
-  })
+  });
 });

@@ -21,7 +21,15 @@ socket.on('listening', () => {
 });
 
 socket.on('message', (msg, rinfo) => {
-  console.log(`server got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+  console.log(`I got: ${msg} from ${rinfo.address}:${rinfo.port}`);
+
+  // socket.send(MESSAGE, DEST_PORT, DEST_HOST, (err) => {
+  //   if(err) {
+  //     console.log(err);
+  //   } else {
+  //     console.log('PING SENT');
+  //   }
+  // });
 });
 
 // payload = payload.toString('hex');
