@@ -1,13 +1,12 @@
 const http = require('http');
 const WebSocket = require('ws');
 
-const hostname = 'localhost';
 const port = 8080;
 
 let socket;
 let requestId = 0;
 
-const httpServer = (req, res) => {
+const httpServer = (req, _res) => {
   console.log("Incomming request");
 
   const keys = [
@@ -45,7 +44,7 @@ const httpServer = (req, res) => {
 
   socket.send(JSON.stringify(request));
 
-  socket.on('message', (msg) => {
+  socket.on('message', (msg, res = _res) => {
     try {
       const incomingRes = JSON.parse(msg);
       console.log({ incomingRes });
