@@ -83,4 +83,6 @@ wss.on('connection', (ws) => {
 });
 
 
-server.listen(port, hostname);
+server.listen(port, () => {
+  console.log('server started');
+});
