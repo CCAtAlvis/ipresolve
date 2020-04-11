@@ -48,16 +48,19 @@ const httpServer = (req, res) => {
   socket.on('message', (msg) => {
     try {
       const incomingRes = JSON.parse(msg);
-      res.statusCode = incomingRes.statusCode;
-      res.statusMessage = incomingRes.statusMessage;
+      console.log(incomingRes);
+      if (msg.type === 'headers') {
+        res.statusCode = incomingRes.statusCode;
+        res.statusMessage = incomingRes.statusMessage;
 
-      for (let k in incomingRes.headers) {
-        // console.log(k, incomingRes.headers[k]);
-        res.setHeader(k, incomingRes.headers[k]);
+        for (let k in incomingRes.headers) {
+          // console.log(k, incomingRes.headers[k]);
+          res.setHeader(k, incomingRes.headers[k]);
+        }
+      } else {
+        res.write(incomingRes.data);
+        res.end();
       }
-
-      res.end(incomingRes.data);
-      res = null;
     } catch (err) {
       console.log(err);
     }
