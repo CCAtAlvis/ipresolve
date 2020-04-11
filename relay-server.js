@@ -48,8 +48,8 @@ const httpServer = (req, _res) => {
     try {
       const incomingRes = JSON.parse(msg);
       // console.log({ incomingRes });
-      console.log({res});
-      if (msg.type === 'headers') {
+      // console.log({ res });
+      if (incomingRes.type === 'headers') {
         res.statusCode = incomingRes.statusCode;
         res.statusMessage = incomingRes.statusMessage;
 
@@ -57,8 +57,7 @@ const httpServer = (req, _res) => {
           // console.log(k, incomingRes.headers[k]);
           res.setHeader(k, incomingRes.headers[k]);
         }
-        res.end('hi');
-      } else if (msg.type === 'body'){
+      } else if (incomingRes.type === 'body'){
         res.write(incomingRes.data);
         res.end();
       }
@@ -80,11 +79,7 @@ wss.on('connection', (ws) => {
 
   ws.send(JSON.stringify({ clientId: clientId }));
   clientId++;
-
-  // ws.on('message', (msg) => console.log(msg));
 });
 
 
-server.listen(port, () => {
-  console.log('server started');
-});
+server.listen(port, () => { console.log('server started'); });
