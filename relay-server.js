@@ -57,6 +57,7 @@ const httpServer = (req, res) => {
           // console.log(k, incomingRes.headers[k]);
           res.setHeader(k, incomingRes.headers[k]);
         }
+        res.end('hi');
       } else if (msg.type === 'body'){
         res.write(incomingRes.data);
         res.end();
