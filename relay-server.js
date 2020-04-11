@@ -47,7 +47,8 @@ const httpServer = (req, _res) => {
   socket.on('message', (msg, res = _res) => {
     try {
       const incomingRes = JSON.parse(msg);
-      console.log({ incomingRes });
+      // console.log({ incomingRes });
+      console.log({res});
       if (msg.type === 'headers') {
         res.statusCode = incomingRes.statusCode;
         res.statusMessage = incomingRes.statusMessage;
