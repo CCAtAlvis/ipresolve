@@ -64,6 +64,7 @@ const httpServer = (req, res) => {
       }
     } catch (err) {
       console.log(err);
+      res.end('hi');
     }
   });
 };
