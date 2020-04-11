@@ -48,7 +48,7 @@ const httpServer = (req, res) => {
   socket.on('message', (msg) => {
     try {
       const incomingRes = JSON.parse(msg);
-      console.log(incomingRes);
+      console.log({ incomingRes });
       if (msg.type === 'headers') {
         res.statusCode = incomingRes.statusCode;
         res.statusMessage = incomingRes.statusMessage;
@@ -57,7 +57,7 @@ const httpServer = (req, res) => {
           // console.log(k, incomingRes.headers[k]);
           res.setHeader(k, incomingRes.headers[k]);
         }
-      } else {
+      } else if (msg.type === 'body'){
         res.write(incomingRes.data);
         res.end();
       }
