@@ -6,6 +6,8 @@ const port = 8080;
 let socket;
 let requestId = 0;
 
+let responses = {};
+
 const httpServer = (req, _res) => {
   console.log("Incomming request");
 
@@ -39,14 +41,19 @@ const httpServer = (req, _res) => {
   }
   request.type = 'request';
   request.reqId = requestId;
+
+  responses[requestId] = _res;
+
   requestId++;
+
   // console.log({ request });
 
   socket.send(JSON.stringify(request));
 
-  socket.on('message', (msg, res = _res) => {
+  socket.on('message', (msg) => {
     try {
       const incomingRes = JSON.parse(msg);
+      const res = responses[incomingRes.reqId];
       // console.log({ incomingRes });
       // console.log({ res });
       if (incomingRes.type === 'headers') {
