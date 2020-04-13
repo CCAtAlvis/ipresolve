@@ -41,9 +41,7 @@ const httpServer = (req, _res) => {
   }
   request.type = 'request';
   request.reqId = requestId;
-
   responses[requestId] = _res;
-
   requestId++;
 
   // console.log({ request });
@@ -64,8 +62,9 @@ const httpServer = (req, _res) => {
           // console.log(k, incomingRes.headers[k]);
           res.setHeader(k, incomingRes.headers[k]);
         }
-      } else if (incomingRes.type === 'body'){
+      } else if (incomingRes.type === 'body') {
         res.write(incomingRes.data);
+      } else if (incomingRes.type === 'end') {
         res.end();
       }
     } catch (err) {
